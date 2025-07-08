@@ -1,0 +1,13 @@
+# Ensure consistent text file line endings across OSes
+* text=auto
+
+# Mark Python files as UTF-8
+*.py text eol=lf
+
+# Treat these as binary to prevent diff and merge conflicts
+*.safetensors binary
+*.pt binary
+*.onnx binary
+*.jpg binary
+*.png binary
+*.pdf binary
