@@ -1,0 +1,23 @@
+# Ignore virtual environment
+venv/
+
+# Ignore cached files
+__pycache__/
+*.pyc
+
+# Ignore model files and large data
+model/
+uploads/
+summaries/
+
+# Ignore PDF/image/doc/test files
+*.pdf
+*.jpg
+*.png
+*.docx
+*.log
+
+# Ignore system/editor files
+.DS_Store
+*.bak
+*.tmp

@@ -1,0 +1,11 @@
+Flask==3.0.2
+transformers==4.41.2
+torch==2.3.0
+pdf2image==1.17.0
+PyMuPDF==1.24.1
+pytesseract==0.3.10
+Pillow==10.3.0
+numpy==1.26.4
+sentencepiece==0.2.0
+
+poppler

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NeuroDoc AI</title>
+    <style>
+        :root {
+            --bg-light: #f0f4f8;
+            --bg-dark: #1e1e2f;
+            --text-light: #2c3e50;
+            --text-dark: #f5f5f5;
+            --card-light: #ffffff;
+            --card-dark: #2d2d44;
+            --border: #ccc;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+            color: var(--text-light);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode {
+            background-color: var(--bg-dark);
+            color: var(--text-dark);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 60px auto;
+            padding: 40px;
+            background-color: var(--card-light);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: background-color 0.3s;
+        }
+
+        body.dark-mode .container {
+            background-color: var(--card-dark);
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .toggle-btn {
+            background: #3498db;
+            color: #fff;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        input[type="file"] {
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background-color: #fff;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #2980b9, #1c6ea4);
+        }
+
+        .summary-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .summary-section {
+                flex-direction: row;
+            }
+        }
+
+        .box {
+            flex: 1;
+            background-color: var(--card-light);
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-size: 16px;
+            line-height: 1.6;
+            max-height: 500px;
+            overflow-y: auto;
+            box-shadow: inset 0 0 6px rgba(0,0,0,0.05);
+            transition: background-color 0.3s;
+        }
+
+        body.dark-mode .box {
+            background-color: #3c3c5b;
+            color: var(--text-dark);
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .loader {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .loader.active {
+            display: block;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="top-bar">
+            <h2>🧠 NeuroDoc - Intelligent Document Summarizer</h2>
+            <button class="toggle-btn" onclick="toggleMode()">🌗 Toggle Mode</button>
+        </div>
+
+        <form method="POST" enctype="multipart/form-data" action="/upload" onsubmit="showLoader()">
+            <input type="file" name="document" required>
+            <button type="submit">Upload and Summarize</button>
+        </form>
+
+        <div class="loader" id="loader">
+            <div class="spinner"></div>
+            <p>Analyzing document...</p>
+        </div>
+
+        {% if summary %}
+            <div class="summary-section">
+                <div class="box">
+                    <h3>🔍 OCR Text</h3>
+                    {{ ocr_text | safe }}
+                </div>
+                <div class="box">
+                    <h3>📄 Summary</h3>
+                    {{ summary | safe }}
+                    <a href="/download/{{ filename }}">⬇ Download Summary</a>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    <script>
+        function toggleMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        function showLoader() {
+            document.getElementById('loader').classList.add('active');
+        }
+    </script>
+</body>
+</html>
