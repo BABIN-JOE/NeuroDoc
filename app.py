@@ -3,6 +3,8 @@ from neurodoc_core.ocr_engine import extract_text_from_file
 from neurodoc_core.summarizer import summarize_text
 import os
 import uuid
+from flask_cors import CORS
+CORS(app)
 
 app = Flask(__name__)
 
