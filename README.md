@@ -111,7 +111,7 @@ You can download and cache the BART model beforehand to make the app work fully 
 ## 🧑‍💻 Developed By
 
 **Babin Joe**  
-[🌐 Portfolio](https://babin-joe-portfolio.vercel.app) • [GitHub](https://github.com/BABIN-JOE) • [LinkedIn](https://www.linkedin.com/in/babin-joe)
+[🌐 Portfolio](https://babin-joe.vercel.app) • [GitHub](https://github.com/BABIN-JOE) • [LinkedIn](https://www.linkedin.com/in/babin-joe)
 
 ---
 
