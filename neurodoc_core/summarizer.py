@@ -2,7 +2,7 @@ import re
 from transformers import BartTokenizer, BartForConditionalGeneration
 
 # ✅ Load the local model
-MODEL_PATH = r"C:\NeuroDoc\model\bart-large-cnn"
+MODEL_PATH = "facebook/bart-large-cnn"
 tokenizer = BartTokenizer.from_pretrained(MODEL_PATH)
 model = BartForConditionalGeneration.from_pretrained(MODEL_PATH)
 
