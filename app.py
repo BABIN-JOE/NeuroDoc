@@ -4,9 +4,9 @@ from neurodoc_core.summarizer import summarize_text
 import os
 import uuid
 from flask_cors import CORS
-CORS(app)
 
 app = Flask(__name__)
+CORS(app)
 
 # Folders
 UPLOAD_FOLDER = "uploads"
