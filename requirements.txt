@@ -7,3 +7,4 @@ pytesseract
 Pillow
 scikit-learn
 sentencepiece
+gunicorn
