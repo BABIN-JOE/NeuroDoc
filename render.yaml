@@ -1,8 +1,18 @@
 services:
   - type: web
-    name: neurodoc
+    name: neurodoc-app
     env: python
     plan: free
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn app:app"
-    autoDeploy: true
+    region: oregon
+    buildCommand: pip install --no-cache-dir -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: FLASK_ENV
+        value: production
+    buildFilter:
+      paths:
+        - requirements.txt
+        - app.py
+        - templates/**
+        - static/**
+        - neurodoc_core/**
